@@ -238,6 +238,9 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="2aj-qh-1A8">
+                                <rect key="frame" x="197" y="465" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QZE-dF-bNY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -245,6 +248,8 @@
                             <constraint firstItem="Qy3-0m-wHV" firstAttribute="leading" secondItem="QZE-dF-bNY" secondAttribute="leading" constant="20" id="6Om-sr-3Dw"/>
                             <constraint firstItem="Qy3-0m-wHV" firstAttribute="centerX" secondItem="QZE-dF-bNY" secondAttribute="centerX" id="Myt-vD-UIz"/>
                             <constraint firstItem="Qy3-0m-wHV" firstAttribute="centerY" secondItem="QZE-dF-bNY" secondAttribute="centerY" id="bbB-65-Zuv"/>
+                            <constraint firstItem="2aj-qh-1A8" firstAttribute="centerY" secondItem="QZE-dF-bNY" secondAttribute="centerY" id="nMK-oE-k7A"/>
+                            <constraint firstItem="2aj-qh-1A8" firstAttribute="centerX" secondItem="QZE-dF-bNY" secondAttribute="centerX" id="rl6-nU-Mgr"/>
                             <constraint firstItem="QZE-dF-bNY" firstAttribute="trailing" secondItem="Qy3-0m-wHV" secondAttribute="trailing" constant="20" id="x9r-By-iQ0"/>
                         </constraints>
                     </view>
@@ -258,6 +263,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="2aj-qh-1A8" id="KKJ-yP-TCk"/>
                         <outlet property="linkTextField" destination="o8S-jf-2g8" id="V9n-8F-b8W"/>
                         <outlet property="yourLocationTextField" destination="fHy-2O-Dhh" id="9P1-1u-HHe"/>
                         <segue destination="KSb-lW-gAA" kind="show" identifier="FindLocationTapped" id="BwU-ns-22b"/>

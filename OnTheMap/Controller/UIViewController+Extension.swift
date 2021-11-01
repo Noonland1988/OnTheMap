@@ -22,7 +22,6 @@ extension UIViewController {
     }
     
     
-    
     func openLink(url: String){
         guard let url = URL(string: url) else {
             showAlert(title: "Invalid URL", message: "No URL")

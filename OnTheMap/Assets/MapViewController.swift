@@ -25,10 +25,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     var studentLocation = [results]()
     var annotations = [MKPointAnnotation]()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //find studentlocation
@@ -47,12 +43,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                     self.mapView.addAnnotations(self.annotations)
                 }
             } else {
-                print("could not find StudentLocation")
+                self.showAlert(title: "Could not find students data", message: error?.localizedDescription ?? "")
             }
         }
     }
     
     func annotationsHandler(){
+        mapView.removeAnnotations(mapView.annotations)// removing old annotations
         for location in self.studentLocation {
             let lat = CLLocationDegrees(Double(location.latitude))
             let long = CLLocationDegrees(Double(location.longitude))
