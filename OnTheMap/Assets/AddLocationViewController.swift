@@ -27,7 +27,7 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     //MARK: Actions
     @IBAction func finishTapped(_ sender:UIButton) {
             geocoderActive(true)
-            OTMClient.createStudentLocation(yourLocation: yourLocation, yourLink: yourLink, yourLatitude: Float(yourCoordinate.latitude), yourLongitude: Float(yourCoordinate.longitude)){ success, error in
+        OTMClient.createStudentLocation(yourLocation: yourLocation, yourLink: linkcheck(link: yourLink), yourLatitude: Float(yourCoordinate.latitude), yourLongitude: Float(yourCoordinate.longitude)){ success, error in
                 if success == true {
                     DispatchQueue.main.async {
                         self.dismiss(animated: true, completion: nil)
@@ -61,12 +61,12 @@ class AddLocationViewController: UIViewController, MKMapViewDelegate {
     
     
     func geocoderActive(_ active: Bool){
-        if active {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+        active ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         finishButton.isEnabled = !active
+    }
+    
+    func linkcheck(link: String) -> String{
+        return link.contains("https://") ? link : "https://" + link
     }
 
         

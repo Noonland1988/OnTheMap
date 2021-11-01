@@ -17,7 +17,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     @IBAction func refreshTapped(_ sender:UIBarButtonItem){
-        print("refreshbuttonTapped")
         getStudentLocationHandler()
     }
     

@@ -65,11 +65,7 @@ class InformationPostingViewController: UIViewController {
         })
     }
     func geocoderActive(_ active: Bool){
-        if active {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+        active ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
         yourLocationTextField.isEnabled = !active
         linkTextField.isEnabled = !active
     }

@@ -22,9 +22,6 @@ class OTMClient{
     
     
     //URLs
-    //GET "https://onthemap-api.udacity.com/v1/users/3903878747"
-    //DELETE https://onthemap-api.udacity.com/v1/session
-    //POST "https://onthemap-api.udacity.com/v1/session"
     
     enum Endpoints{
         static let base = "https://onthemap-api.udacity.com/v1"
@@ -51,10 +48,8 @@ class OTMClient{
         let loginRequest = LoginRequest(udacity: loginDict(username: username, password: password))
         taskForPOSTRequest(url: Endpoints.loginOut.url, headerAccept: true, udacityApi: true, responseType: loginResponse.self, body: loginRequest){(response, error) in
             if let response = response {
-                //Auth.accountKey = response.account.key
                 Auth.sessionId = response.session.id
-                Auth.userId = response.account.key //is this right?
-                //print(response)
+                Auth.userId = response.account.key
                 completion(true, nil)
             } else {
                 completion(false, error)
@@ -80,11 +75,9 @@ class OTMClient{
           }
           let range = (5..<data!.count)
           let newData = data?.subdata(in: range) /* subset response data! but not necessary... */
-          //print(String(data: newData!, encoding: .utf8)!)
             Auth.sessionId = ""
             Auth.userId = ""
             completion()
-            //Auth.accountKey = ""
         }
         task.resume()
         
@@ -162,7 +155,7 @@ class OTMClient{
             } else {
                 newData = data
             }
-            //print(String(data:newData , encoding: .utf8)!)
+            
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: newData)
@@ -191,7 +184,7 @@ class OTMClient{
         }
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try! JSONEncoder().encode(body)
-        //print(String(data:request.httpBody! , encoding: .utf8)!)
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data else {
                 DispatchQueue.main.async {
@@ -206,12 +199,12 @@ class OTMClient{
             } else {
                 newData = data
             }
-            //print(String(data:newData , encoding: .utf8)!)
+           
             let decoder = JSONDecoder()
             do {
                 let responseObject = try decoder.decode(ResponseType.self, from: newData)
                 DispatchQueue.main.async {
-                    //print(responseObject)
+                    
                     completion(responseObject, nil)
                 }
             } catch { //handling error if needed... not implemented at the moment
